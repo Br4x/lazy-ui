@@ -17,7 +17,7 @@ export default {
     hasBadge: {
       control: { type: "boolean" },
     },
-    isGradient: {
+    isNotGradient: {
       control: { type: "boolean" },
     },
     color: {
@@ -50,7 +50,7 @@ export const Base = {
     isFlickering: false,
     hasBadge: false,
     default: "Hover on me!",
-    isGradient: false,
+    isNotGradient: false,
     isBadgePulsating: false,
     color: "yellow",
     disabled: false

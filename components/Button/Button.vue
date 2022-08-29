@@ -2,58 +2,58 @@
   <button
     :class="{
       'animate-bounce': isBouncing && !disabled,
-      'relative': hasBadge,
       'animate-pulse': isFlickering,
-      'opacity-25 cursor-not-allowed': disabled
+      'opacity-25 cursor-not-allowed pointer-events-none': disabled,
     }"
-    class="mx-auto h-16 w-64 flex justify-center items-center"
+    class="relative mx-auto min-h-16 min-w-32 flex justify-center items-center"
   >
     <div
       :class="{
-        'transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer': !disabled,
-        'cursor-not-allowed': disabled,
+        'transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer':
+          !disabled,
+        'cursor-not-allowed pointer-events-none': disabled,
         'rounded-full': isRound,
         'rounded-xl': !isRound,
-        'bg-gradient-to-br': isGradient,
-        'from-yellow-400': isGradient && color == 'yellow',
-        'to-yellow-600': isGradient && color == 'yellow',
-        'from-gray-400': isGradient && color == 'gray',
-        'to-gray-600': isGradient && color == 'gray',
-        'from-cool-gray-400': isGradient && color == 'cool-gray',
-        'to-cool-gray-600': isGradient && color == 'cool-gray',
-        'from-pink-400': isGradient && color == 'pink',
-        'to-pink-600': isGradient && color == 'pink',
-        'from-red-400': isGradient && color == 'red',
-        'to-red-600': isGradient && color == 'red',
-        'from-orange-400': isGradient && color == 'orange',
-        'to-orange-600': isGradient && color == 'orange',
-        'from-green-400': isGradient && color == 'green',
-        'to-green-600': isGradient && color == 'green',
-        'from-teal-400': isGradient && color == 'teal',
-        'to-teal-600': isGradient && color == 'teal',
-        'from-blue-400': isGradient && color == 'blue',
-        'to-blue-600': isGradient && color == 'blue',
-        'from-indigo-400': isGradient && color == 'indigo',
-        'to-indigo-600': isGradient && color == 'indigo',
-        'from-purple-400': isGradient && color == 'purple',
-        'to-purple-600': isGradient && color == 'purple',
-        'bg-purple-400':!isGradient && color == 'purple',
-        'bg-yellow-500':!isGradient && color == 'yellow',
-        'bg-gray-400':!isGradient && color == 'gray',
-        'bg-cool-gray-400':!isGradient && color == 'cool-gray',
-        'bg-pink-400':!isGradient && color == 'pink',
-        'bg-red-400':!isGradient && color == 'red',
-        'bg-orange-400':!isGradient && color == 'orange',
-        'bg-green-400':!isGradient && color == 'green',
-        'bg-teal-400':!isGradient && color == 'teal',
-        'bg-blue-400':!isGradient && color == 'blue',
-        'bg-indigo-400':!isGradient && color == 'indigo',
+        'bg-gradient-to-br': !isNotGradient,
+        'from-yellow-400': !isNotGradient && color == 'yellow',
+        'to-yellow-600': !isNotGradient && color == 'yellow',
+        'from-gray-400': !isNotGradient && color == 'gray',
+        'to-gray-600': !isNotGradient && color == 'gray',
+        'from-cool-gray-400': !isNotGradient && color == 'cool-gray',
+        'to-cool-gray-600': !isNotGradient && color == 'cool-gray',
+        'from-pink-400': !isNotGradient && color == 'pink',
+        'to-pink-600': !isNotGradient && color == 'pink',
+        'from-red-400': !isNotGradient && color == 'red',
+        'to-red-600': !isNotGradient && color == 'red',
+        'from-orange-400': !isNotGradient && color == 'orange',
+        'to-orange-600': !isNotGradient && color == 'orange',
+        'from-green-400': !isNotGradient && color == 'green',
+        'to-green-600': !isNotGradient && color == 'green',
+        'from-teal-400': !isNotGradient && color == 'teal',
+        'to-teal-600': !isNotGradient && color == 'teal',
+        'from-blue-400': !isNotGradient && color == 'blue',
+        'to-blue-600': !isNotGradient && color == 'blue',
+        'from-indigo-400': !isNotGradient && color == 'indigo',
+        'to-indigo-600': !isNotGradient && color == 'indigo',
+        'from-purple-400': !isNotGradient && color == 'purple',
+        'to-purple-600': !isNotGradient && color == 'purple',
+        'bg-purple-400': isNotGradient && color == 'purple',
+        'bg-yellow-500': isNotGradient && color == 'yellow',
+        'bg-gray-500': isNotGradient && color == 'gray',
+        'bg-cool-gray-500': isNotGradient && color == 'cool-gray',
+        'bg-pink-400': isNotGradient && color == 'pink',
+        'bg-red-400': isNotGradient && color == 'red',
+        'bg-orange-400': isNotGradient && color == 'orange',
+        'bg-green-400': isNotGradient && color == 'green',
+        'bg-teal-400': isNotGradient && color == 'teal',
+        'bg-blue-400': isNotGradient && color == 'blue',
+        'bg-indigo-400': isNotGradient && color == 'indigo',
       }"
       class="
         relief
         i
-        h-16
-        w-64
+        h-full
+        w-full
         items-center
         shadow-2xl
         absolute
@@ -75,7 +75,11 @@
     >
       <slot>Button</slot>
     </span>
-    <has-notification v-if="hasBadge" :is-pulsating="isBadgePulsating" :color="colorBadge"/>
+    <has-notification
+      v-if="hasBadge"
+      :is-pulsating="isBadgePulsating"
+      :color="colorBadge"
+    />
   </button>
 </template>
 
@@ -84,17 +88,18 @@ import HasNotification from "../HasNotification/HasNotification.vue";
 export default {
   components: { HasNotification },
   name: "Button",
+  inheritAttrs: false,
   props: {
     isBouncing: Boolean,
     isRound: Boolean,
     isFlickering: Boolean,
     hasBadge: Boolean,
-    isGradient: Boolean,
+    isNotGradient: Boolean,
     color: String,
     colorBadge: String,
     isBadgePulsating: Boolean,
-    disabled: Boolean
-  },
+    disabled: Boolean,
+  }
 };
 </script>
 
