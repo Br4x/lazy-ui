@@ -1,0 +1,13 @@
+node_modules
+*.log
+.nuxt
+nuxt.d.ts
+.output
+package-lock.json
+
+# Local Netlify folder
+.netlify
+
+/public/tests/*
+.env
+.vscode/
