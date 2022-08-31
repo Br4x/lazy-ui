@@ -20,13 +20,40 @@ export default {
     isNotGradient: {
       control: { type: "boolean" },
     },
+    isLoading: {
+      control: { type: "boolean" },
+    },
     color: {
       control: "select",
-      options: ["yellow", "gray", "cool-gray", "pink", "red", "orange", "green", "teal", "blue", "indigo", "purple"],
+      options: [
+        "yellow",
+        "gray",
+        "cool-gray",
+        "pink",
+        "red",
+        "orange",
+        "green",
+        "teal",
+        "blue",
+        "indigo",
+        "purple",
+      ],
     },
     colorBadge: {
       control: "select",
-      options: ["yellow", "gray", "cool-gray", "pink", "red", "orange", "green", "teal", "blue", "indigo", "purple"],
+      options: [
+        "yellow",
+        "gray",
+        "cool-gray",
+        "pink",
+        "red",
+        "orange",
+        "green",
+        "teal",
+        "blue",
+        "indigo",
+        "purple",
+      ],
     },
     isBadgePulsating: {
       control: { type: "boolean" },
@@ -36,9 +63,9 @@ export default {
     },
     default: {
       control: {
-        type: 'text'
+        type: "text",
       },
-      defaultValue: 'Button'
+      defaultValue: "Button",
     },
   },
 };
@@ -53,6 +80,7 @@ export const Base = {
     isNotGradient: false,
     isBadgePulsating: false,
     color: "yellow",
-    disabled: false
+    disabled: false,
+    isLoading: false,
   },
 };

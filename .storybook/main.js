@@ -1,7 +1,9 @@
 const path = require("path");
 const { loadConfigFromFile, mergeConfig } = require("vite");
 const Inspect = require("vite-plugin-inspect");
-const Unocss = require("unocss/vite");
+const presetIcons = require("@unocss/preset-icons").default;
+const presetUno = require("unocss").presetUno;
+const Unocss = require("unocss/vite").default;
 
 module.exports = {
   stories: [
@@ -23,7 +25,11 @@ module.exports = {
       path.resolve(__dirname, "../vite.config.ts")
     );
     config.resolve.alias["~"] = `${path.resolve(__dirname, "src")}/`;
-    config.plugins.push(Unocss.default());
+    config.plugins.push(
+      Unocss({
+        presets: [presetUno(), presetIcons()],
+      })
+    );
     config.plugins.push(Inspect());
     return mergeConfig(config, {
       ...userConfig,

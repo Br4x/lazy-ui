@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'url';
 import Unocss from "unocss/vite";
 import presetIcons from "@unocss/preset-icons";
-import { presetAttributify, presetUno } from "unocss";
+import { presetUno } from "unocss";
 
 export default {
   server: {
@@ -17,7 +17,6 @@ export default {
   plugins: [
     Unocss({
       presets: [
-        presetAttributify(),
         presetUno(),
         presetIcons(),
       ],

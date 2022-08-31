@@ -10,9 +10,7 @@
       v-bind="$attrs"
       v-on="inputListeners"
     />
-    <button type="submit">
-      <i class="icon ion-android-arrow-forward"></i>
-    </button>
+    
   </div>
 </template>
 

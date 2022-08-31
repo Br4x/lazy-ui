@@ -1,6 +1,7 @@
 <template>
   <button
     :class="{
+      'cursor-progress': isLoading,
       'animate-bounce': isBouncing && !disabled,
       'animate-pulse': isFlickering,
       'opacity-25 cursor-not-allowed pointer-events-none': disabled,
@@ -12,6 +13,7 @@
         'transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out cursor-pointer':
           !disabled,
         'cursor-not-allowed pointer-events-none': disabled,
+        'cursor-progress': isLoading,
         'rounded-full': isRound,
         'rounded-xl': !isRound,
         'bg-gradient-to-br': !isNotGradient,
@@ -73,7 +75,8 @@
         text-lg
       "
     >
-      <slot>Button</slot>
+      <div v-if="isLoading" class="w-12 h-12 i-eos-icons-three-dots-loading opacity-80" />
+      <slot v-else>Button</slot>
     </span>
     <has-notification
       v-if="hasBadge"
@@ -98,8 +101,9 @@ export default {
     color: String,
     colorBadge: String,
     isBadgePulsating: Boolean,
+    isLoading: Boolean,
     disabled: Boolean,
-  }
+  },
 };
 </script>
 
