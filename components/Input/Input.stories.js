@@ -3,7 +3,7 @@ import UiInput from "./Input.vue";
 export default {
   title: "Components/Input",
   component: UiInput,
-  template: `<ui-input {...args}>{{args.default}}</ui-input>`,
+  template: `<ui-input v-model="value" {...args}>{{args.default}}</ui-input>`,
   argTypes: {
     type:{
       control: {
@@ -16,6 +16,9 @@ export default {
       }
     },
     isValid: {
+      control: { type: "boolean" },
+    },
+    isLoading: {
       control: { type: "boolean" },
     },
     disabled: {
@@ -34,13 +37,13 @@ export default {
   },
 };
 
-export const Base = {
+export const base = {
   args: {
-    isValid: null,
     placeholder: "Le nom de ton chat ?",
     label: "Nom du chat",
-    value: "Nom du chat",
+    value: "",
     disabled: false,
+    isLoading: false,
     type: 'text'
   },
 };

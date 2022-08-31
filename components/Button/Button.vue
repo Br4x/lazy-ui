@@ -5,8 +5,10 @@
       'animate-bounce': isBouncing && !disabled,
       'animate-pulse': isFlickering,
       'opacity-25 cursor-not-allowed pointer-events-none': disabled,
+      'min-h-16 min-w-32': !withIcon,
+      'p-4': withIcon,
     }"
-    class="relative mx-auto min-h-16 min-w-32 flex justify-center items-center"
+    class="relative mx-auto flex justify-center items-center"
   >
     <div
       :class="{
@@ -15,8 +17,9 @@
         'cursor-not-allowed pointer-events-none': disabled,
         'cursor-progress': isLoading,
         'rounded-full': isRound,
-        'rounded-xl': !isRound,
+        'rounded-lg': !isRound,
         'bg-gradient-to-br': !isNotGradient,
+        'bg-white': color == 'transparent',
         'from-yellow-400': !isNotGradient && color == 'yellow',
         'to-yellow-600': !isNotGradient && color == 'yellow',
         'from-gray-400': !isNotGradient && color == 'gray',
@@ -50,6 +53,7 @@
         'bg-teal-400': isNotGradient && color == 'teal',
         'bg-blue-400': isNotGradient && color == 'blue',
         'bg-indigo-400': isNotGradient && color == 'indigo',
+        'backdrop-blur-sm backdrop-saturate-180 hover:bg-opacity-60 bg-opacity-30': isGlass,
       }"
       class="
         relief
@@ -75,8 +79,14 @@
         text-lg
       "
     >
-      <div v-if="isLoading" class="w-12 h-12 i-eos-icons-three-dots-loading opacity-80" />
-      <slot v-else>Button</slot>
+      <div
+        v-if="isLoading"
+        class="w-12 h-12 i-eos-icons-three-dots-loading opacity-80"
+      />
+      <slot v-if="withIcon && !isLoading">
+        <div class="w-12 h-12 i-carbon:play" />
+      </slot>
+      <slot v-if="!withIcon && !isLoading">Button</slot>
     </span>
     <has-notification
       v-if="hasBadge"
@@ -93,6 +103,8 @@ export default {
   name: "Button",
   inheritAttrs: false,
   props: {
+    withIcon: Boolean,
+    isGlass: Boolean,
     isBouncing: Boolean,
     isRound: Boolean,
     isFlickering: Boolean,

@@ -23,9 +23,13 @@ export default {
     isLoading: {
       control: { type: "boolean" },
     },
+    withIcon: {
+      control: { type: "boolean" },
+    },
     color: {
       control: "select",
       options: [
+        "transparent",
         "yellow",
         "gray",
         "cool-gray",
@@ -42,6 +46,7 @@ export default {
     colorBadge: {
       control: "select",
       options: [
+        "transparent",
         "yellow",
         "gray",
         "cool-gray",
@@ -75,6 +80,8 @@ export const Base = {
     isBouncing: false,
     isRound: false,
     isFlickering: false,
+    isGlass: false,
+    withIcon: false,
     hasBadge: false,
     default: "Hover on me!",
     isNotGradient: false,

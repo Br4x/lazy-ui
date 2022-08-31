@@ -8,13 +8,13 @@
       top-0
       right-0
       transform
-      -translate-x-2.5
-      -translate-y-2.5
+      -translate-x-2.5 -translate-y-2.5
     "
   >
     <span
       :class="{
         'animate-ping': isPulsating,
+        'bg-white': color == 'transparent',
         'bg-purple-400': color == 'purple',
         'bg-yellow-400': color == 'yellow',
         'bg-gray-400': color == 'gray',
@@ -27,17 +27,12 @@
         'bg-blue-400': color == 'blue',
         'bg-indigo-400': color == 'indigo',
       }"
-      class="
-        absolute
-        inline-flex
-        h-full
-        w-full
-        rounded-full
-        opacity-75
-      "
+      class="absolute inline-flex h-full w-full rounded-full opacity-75"
     />
-    <span 
-    :class="{
+    <span
+      :class="{
+        'bg-transparent backdrop-blur-sm backdrop-saturate-180':
+          color == 'transparent',
         'from-yellow-400': color == 'yellow',
         'to-yellow-600': color == 'yellow',
         'from-gray-400': color == 'gray',
@@ -61,7 +56,8 @@
         'from-purple-400': color == 'purple',
         'to-purple-600': color == 'purple',
       }"
-    class="absolute inline-flex rounded-full h-6 w-6 relief bg-gradient-to-br" />
+      class="absolute inline-flex rounded-full h-6 w-6 relief bg-gradient-to-br"
+    />
   </span>
 </template>
 
@@ -70,16 +66,15 @@ export default {
   name: "HasNotifications",
   props: {
     isPulsating: Boolean,
-    color: String
+    color: String,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-    .relief {
-      box-shadow: inset 1px 1px 3px -3px #ffffff,
-        rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em,
-        rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;
-    }
-    </style>
-    
+.relief {
+  box-shadow: inset 1px 1px 3px -3px #ffffff,
+    rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em,
+    rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;
+}
+</style>
